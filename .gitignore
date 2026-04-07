@@ -2,3 +2,5 @@ parallel/
 __pycache__/
 *.pyc
 data/
+CLAUDE.md
+report.md
