@@ -7,7 +7,7 @@ from sequential_counter import extract_text, make_chunks, reduce_counts
 from text_utils import tokenize, count_words
 
 
-CHUNK_SIZE = 10_000
+CHUNK_SIZE = 100_000
 N_JOBS     = 4        # number of parallel workers; -1 = use all CPU cores
 
 # ── Worker functions ──────────────────────────────────────────────────────────
@@ -25,8 +25,11 @@ if __name__ == '__main__':
 
     # ── Phase 1: I/O (parallel across files) ─────────────────────────────────
     t0 = time.perf_counter()
-    results = Parallel(n_jobs=N_JOBS)(delayed(load_file)(p) for p in paths)
-    all_chunks = [chunk for file_chunks in results for chunk in file_chunks]
+    all_chunks = []
+    for file_chunks in Parallel(n_jobs=N_JOBS, return_as="generator")(
+        delayed(load_file)(p) for p in paths
+    ):
+        all_chunks.extend(file_chunks)
     t_io = time.perf_counter() - t0
 
     # ── Phase 2: Tokenization (parallel across chunks) ────────────────────────
@@ -45,6 +48,7 @@ if __name__ == '__main__':
     t_reduce = time.perf_counter() - t0
 
     t_total = t_io + t_tokenize + t_map + t_reduce
+    
 
     # ── Timing report ─────────────────────────────────────────────────────────
     print(f'{"Phase":<25} {"Time (s)":>10} {"Share":>8}')

@@ -7,7 +7,7 @@ from sequential_counter import extract_text, make_chunks, reduce_counts
 from text_utils import tokenize, count_words
 
 
-CHUNK_SIZE = 10_000
+CHUNK_SIZE = 100_000
 
 
 # ── Threaded helpers ──────────────────────────────────────────────────────────

@@ -65,7 +65,7 @@ if __name__ == '__main__':
     paths = glob.glob('data/*.epub') + glob.glob('data/*.txt')
     print(f'Processing {len(paths)} files: {paths}\n')
 
-    chunk_size = 10_000
+    chunk_size = 100_000
 
     # ── Phase 1: I/O ─────────────────────────────────────────────────────────
     t0 = time.perf_counter()
