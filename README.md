@@ -26,14 +26,7 @@ NLTK's `punkt_tab` tokenizer data is downloaded automatically on first run.
 
 ## Corpus
 
-Place EPUB or TXT files in the `data/` directory. The experiment uses three novels from [Project Gutenberg](https://www.gutenberg.org/):
-
-| File | Title |
-|------|-------|
-| pg1342-images-3.epub | Pride and Prejudice — Jane Austen |
-| pg2641-images-3.epub | Siddhartha — Hermann Hesse |
-| pg84-images-3.epub   | Frankenstein — Mary Shelley |
-| PANDJ.txt            | Small validation corpus |
+Place EPUB or TXT files in the `data/` directory. The experiment uses novels from [Project Gutenberg](https://www.gutenberg.org/):
 
 ## Tokenization Strategy
 
