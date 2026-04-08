@@ -58,18 +58,11 @@ python joblib_counter.py
 | Local counting (Map) | serial | ThreadPoolExecutor | ProcessPoolExecutor | Parallel (loky) |
 | Merge (Reduce) | serial | serial | serial | serial |
 
-The Merge phase is always serial — it must produce a single global Counter.
-
 ## Correctness Verification
 
 All versions must produce identical `Total unique words` counts and top-20 word lists. Any discrepancy indicates a bug in tokenization consistency.
 
 ## Key Parameters
-
-| Parameter | Default | Location |
-|-----------|---------|----------|
-| `CHUNK_SIZE` | 10,000 chars | each counter file |
-| `N_WORKERS` / `N_JOBS` | 4 | multithreads / multiprocess / joblib |
 
 Adjust `CHUNK_SIZE` to study the effect of task granularity on overhead and load balancing.
 
